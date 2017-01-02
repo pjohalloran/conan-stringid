@@ -29,5 +29,5 @@ class StringIdConan(ConanFile):
   def package_info(self):
     self.cpp_info.sharedlinkflags = ["-std=c++11"]
     self.cpp_info.exelinkflags = ["-std=c++11"]
-    self.cpp_info.libs = ["string_id", "stdc++"]
+    self.cpp_info.libs = ["foonathan_string_id", "stdc++"]
     self.cpp_info.cppflags = ["-std=c++11", "-stdlib=libc++"]
