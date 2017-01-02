@@ -21,7 +21,7 @@ class StringIdConan(ConanFile):
     self.run("cmake --build .")
 
   def package(self):
-    self.copy("*.hpp", dst="include", keep_path=True)
-    self.copy("*.hpp.in", dst="include", keep_path=True)
+    self.copy("*.hpp", dst="include", keep_path=False)
+    self.copy("*.hpp.in", dst="include", keep_path=False)
     self.copy("*.lib", dst="lib", keep_path=False)
     self.copy("*.a", dst="lib", keep_path=False)
