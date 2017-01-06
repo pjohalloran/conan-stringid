@@ -8,11 +8,13 @@ class StringIdConan(ConanFile):
   license="Modified BSD License (3-Clause BSD license)"
   settings = "os", "compiler", "build_type", "arch"
   url = "https://github.com/pjohalloran/conan-stringid"
+  options = {"compiler_version": ["11", "14"]}
+  default_options = "compiler_version=14",
 
   def source(self):
     self.run("git clone https://github.com/foonathan/string_id")
     os.chdir("string_id")
-    self.run("git checkout v2.0-2")
+    self.run("git checkout v%s" % self.version)
 
   def build(self):
     os.makedirs("string_id/build")
@@ -27,7 +29,7 @@ class StringIdConan(ConanFile):
     self.copy("*.a", dst="lib", keep_path=False)
 
   def package_info(self):
-    self.cpp_info.sharedlinkflags = ["-std=c++11"]
-    self.cpp_info.exelinkflags = ["-std=c++11"]
+    self.cpp_info.sharedlinkflags = ["-std=c++%s" % self.options.compiler_version]
+    self.cpp_info.exelinkflags = ["-std=c++%s" % self.options.compiler_version]
     self.cpp_info.libs = ["foonathan_string_id", "stdc++"]
-    self.cpp_info.cppflags = ["-std=c++11", "-stdlib=libc++"]
+    self.cpp_info.cppflags = ["-std=c++%s" % self.options.compiler_version, "-stdlib=libc++"]
